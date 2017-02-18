@@ -54,10 +54,10 @@ ball_y_velocity = 2
 # In[29]:
 
 # Colors for the paddle and ball
-red = (255, 0, 0)
-blue = (0, 0, 255)
-green = (0, 255, 0)
-black = (0, 0, 0)
+red = (255, 0, 0) # Evil Agent
+white = (255, 255, 255) # Ball
+green = (0, 255, 0) # RL Agent
+black = (0, 0, 0) # Screen
 
 
 # In[24]:
@@ -71,7 +71,7 @@ screen = pygame.display.set_mode((window_width, window_height))
 # Draw the ball
 def draw_ball(ball_x_position, ball_y_position):
     ball = pygame.Rect(ball_x_position, ball_y_position, ball_width, ball_height)
-    pygame.draw.rect(screen , red, ball)
+    pygame.draw.rect(screen , white, ball)
 
 
 # In[27]:
@@ -90,7 +90,7 @@ def draw_second_paddle(second_paddle_y_position):
     # Create a rectangle for the second agent
     second_paddle = pygame.Rect(window_width - paddle_buffer - paddle_width , 
                           second_paddle_y_position, paddle_width, paddle_height)
-    pygame.draw.rect(screen, green, second_paddle)
+    pygame.draw.rect(screen, red, second_paddle)
 
 
 # In[11]:
@@ -118,10 +118,10 @@ def update_ball(first_paddle_y_position, second_paddle_y_position, ball_x_positi
                 ball_x_position, ball_y_position, ball_x_direction, ball_y_direction]
     
     # If the ball hits the other (right) side of the window
-    if (ball_x_position <= window_width - paddle_buffer - paddle_width 
+    if (ball_x_position >= window_width - paddle_buffer - paddle_width 
         and ball_y_position + ball_height >= second_paddle_y_position
         and ball_y_position - ball_height <= second_paddle_y_position + paddle_height):
-        ball_x_direction = -1
+        ball_x_direction = -1 #switch directions
     elif (ball_x_position >= window_width - ball_width):
         ball_x_direction = -1
         score = 1 # Positive score for us

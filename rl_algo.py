@@ -170,13 +170,13 @@ def train_graph(inpt, output, sess):
             # Get value from replay memory
             minibatch = random.sample(dq, batch_size)
             
-            input_batch, = [batch[0] for batch in minibatch]
+            input_batch = [batch[0] for batch in minibatch]
             argmax_batch = [batch[1] for batch in minibatch]
             reward_batch = [batch[2] for batch in minibatch]
             new_input_batch = [batch[3] for batch in minibatch]
             
             ground_truth_batch = []
-            output_batch = out.eval(feed_dict = {inpt : new_input_batch})
+            output_batch = output.eval(feed_dict = {inpt : new_input_batch})
             
             # Now start adding reward to the batch
             for index in range(len(minibatch)):
