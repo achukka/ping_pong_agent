@@ -1,17 +1,17 @@
 import tensorflow as tf
 import cv2
 
-
 import ping_pong
 import numpy as np
 import random
-from collections import deque # Store the hisotry
+from collections import deque # Store the history, queue data structure.
+# Using queue data structure -  deque to append and pop, memory 
 
 # Define hyper parameters for the rl algorithm
 actions = 3 # stay, up, down
 
 # learning rate
-gamma = 0.90
+gamma = 0.99
 
 # Used for gradient updates
 init_epsilon = 1.0
@@ -21,9 +21,9 @@ final_epsilon = 0.05
 # Frames to explore, observe
 explore = 500000
 observe = 50000
-# History size
-replay_memory = 50000
 
+# History size
+replay_memory = 500000
 
 batch_size = 100
 
@@ -179,7 +179,7 @@ def train_graph(inpt, output, sess):
             output_batch = output.eval(feed_dict = {inpt : new_input_batch})
             
             # Now start adding reward to the batch
-            for index in range(len(minibatch)):
+            for index in range(0, len(minibatch)):
                 ground_truth_batch.append(reward_batch[index] + 
                                           gamma * np.max(output_batch[index]))
             

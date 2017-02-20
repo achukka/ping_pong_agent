@@ -54,9 +54,7 @@ ball_y_velocity = 2
 # In[29]:
 
 # Colors for the paddle and ball
-red = (255, 0, 0) # Evil Agent
-white = (255, 255, 255) # Ball
-green = (0, 255, 0) # RL Agent
+white = (255, 255, 255)
 black = (0, 0, 0) # Screen
 
 
@@ -80,7 +78,7 @@ def draw_ball(ball_x_position, ball_y_position):
 def draw_first_paddle(first_paddle_y_position):
     # Create a rectangle for the first agent
     first_paddle = pygame.Rect(paddle_buffer, first_paddle_y_position, paddle_width, paddle_height)
-    pygame.draw.rect(screen, green, first_paddle)
+    pygame.draw.rect(screen, white, first_paddle)
 
 
 # In[26]:
@@ -90,7 +88,7 @@ def draw_second_paddle(second_paddle_y_position):
     # Create a rectangle for the second agent
     second_paddle = pygame.Rect(window_width - paddle_buffer - paddle_width , 
                           second_paddle_y_position, paddle_width, paddle_height)
-    pygame.draw.rect(screen, red, second_paddle)
+    pygame.draw.rect(screen, white, second_paddle)
 
 
 # In[11]:
